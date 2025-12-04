@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta da Sorte</title>
+   <link rel="stylesheet" href="css">
+   
+<script src="confetti.browser.min.js"></script>
+<script src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Seção de Introdução -->
+        <div class="section black-bg">
+            <p style="text-align: center; font-size: 18px;">
+                Tens 2 tentativas grátis para girar a roleta. Não custa nada, clique no botão girar!
+            </p>
+        </div>
+
+        <!-- Seção da Roleta -->
+        <div class="section">
+            <h2>🎲 Tente a sua sorte! 🎲</h2>
+            <p>Clique no botão e gire a roleta para ganhar prêmios!</p>
+            
+            <div class="roleta-container">
+                <img src="cQc9WWa.png" alt="Roleta" id="roleta">
+                <div class="pointer"></div>
+            </div>
+            
+            <button id="girarBtn" class="btn-girar" onclick="girarRoleta()">
+                🎮 GIRAR
+            </button>
+        </div>
+
+        <!-- Timer -->
+        <div class="section black-bg">
+            <p style="font-style: italic;">⏳ Você tem 01:59 para girar e garantir sua chance gratuita!</p>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">02</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">39</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instruções -->
+        <div class="section white-bg">
+            <h2>Chegou sua vez de ganhar!</h2>
+            <div class="instructions">
+                <ul>
+                    <li>Para começar, basta apertar o botão dourado escrito <strong>GIRAR</strong>!</li>
+                    <li>💡 <strong>Você tem 2 tentativas totalmente grátis!</strong></li>
+                    <li>A roleta está cheia de prêmios esperando por você!</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Prêmios -->
+        <div class="section black-bg">
+            <h2>🎁 Prêmios da Roleta da Sorte</h2>
+            <div class="prize-list">
+                <p>✅ <strong>10 Meticais</strong> – Comece com sorte!</p>
+                <p>✅ <strong>100 Meticais</strong> – Já dá pra comemorar!</p>
+                <p>✅ <strong>500 Meticais</strong> – Subindo o nível!</p>
+                <p>✅ <strong>1.000 Meticais</strong> – Agora sim!</p>
+                <p>✅ <strong>5.000 Meticais</strong> – Sorte grande!</p>
+                <p>✅ <strong>10.000 Meticais</strong> – O prêmio dos sonhos! 💸</p>
+            </div>
+        </div>
+
+        <!-- Compartilhamento -->
+        <div class="share-section">
+            <h2>🎯 GANHE MAIS GIROS GRÁTIS!</h2>
+            <p>
+                Compartilhe o site <strong><a href="https://roleta.aviamz.com/play.php" target="_blank" style="color: #2980b9;">Roleta do venancio Mondlane</a></strong> com seus amigos e familiares por WhatsApp, SMS, Telegram, ou redes sociais e ganhe <strong>+1 giro grátis</strong> a cada pessoa!
+            </p>
+
+            <div class="share-input">
+                <p style="margin: 0; font-size: 15px; color: #555;">💬 Frase pronta para enviar:</p>
+                <input id="shareText" type="text" readonly="" value="🚀 Acabei de girar uma roleta e ganhei um prêmio! Você também pode ganhar até 10.000 MT grátis. Entra aqui: https://roleta.aviamz.com/play.php">
+                <button onclick="copyText()" class="copy-btn">📋 Copiar mensagem</button>
+            </div>
+
+            <a href="https://api.whatsapp.com/send?text=%F0%9F%9A%80%20Acabei%20de%20girar%20uma%20roleta%20e%20ganhei%20um%20pr%C3%AAmio!%20Voc%C3%AA%20tamb%C3%A9m%20pode%20ganhar%20at%C3%A9%2010.000%20MT%20gr%C3%A1tis.%20Entra%20aqui:%20https://roleta.aviamz.com/play.php" target="_blank" class="whatsapp-btn">
+                📲 Compartilhar no WhatsApp
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Termos de Uso e Direitos Reservados</strong></p>
+            <p><em>© 2025 DLSM – Todos os direitos reservados.</em></p>
+            <p style="margin-top: 15px; font-size: 10px; line-height: 1.4;">
+                A presente simulação interativa tem como principal finalidade o estímulo à participação em ofertas promocionais vinculadas a plataformas externas. Os valores exibidos na roleta não representam prêmios efetivamente creditáveis, estando sua disponibilização condicionada à conclusão de processos de adesão e validação por parte de terceiros. A exibição de montantes possui caráter meramente demonstrativo, sem constituição de obrigação por parte deste domínio ou seus parceiros comerciais.
+            </p>
+            <p style="font-size: 10px;">Este conteúdo está protegido pelas normas de propriedade intelectual. A utilização indevida está sujeita às penalidades legais aplicáveis.</p>
+        </div>
+    </div>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h3>🎉 Resultado 🎉</h3>
+            <p id="popupText"></p>
+            <button id="girarNovamente" onclick="fecharPopUpEGirar()" class="btn" style="display:none;">
+                🔄 Girar Novamente
+            </button>
+            <a id="popupButton" href="https://www.megagamelive.com/affiliates/?btag=2178131" target="_blank" class="btn" style="display:none;">
+                💰 REGISTRE-SE AGORA!
+            </a>
+        </div>
+    </div>
+
+    <!-- Áudios -->
+    <audio id="roletaSom" src="Roleta.mp3"></audio>
+    <audio id="victorySom" src="Celebration.mp3" preload="auto"></audio>
+
+    <script src="confetti.browser.min.js"></script>
+
+  
+
+</body></html>
